@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            z-index: 10;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #e60073; }
+            to { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .portfolio-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-section:hover {
+            transform: translateY(-10px);
+        }
+        
+        .portfolio-item {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .item {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .item:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.03);
+        }
+        
+        .item h3 {
+            margin-bottom: 1rem;
+            color: #fdbb2d;
+        }
+        
+        .sticker {
+            position: fixed;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 50%;
+            z-index: 100;
+            pointer-events: none;
+            animation: fall 3s linear forwards;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .js-sticker {
+            background: #f7df1e;
+            color: #323330;
+        }
+        
+        .css-sticker {
+            background: #1572b6;
+            color: white;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1> Umrbek Portfolio</h1>
+    </header>
+    
+    <div class="container">
+        <section class="portfolio-section">
+            <h2>Men haqimda</h2>
+            <p>Men web dasturchiman. Zamonaviy va foydalanuvchilarga qulay saytlar yaratish bilan shug'ullanaman.</p>
+        </section>
+        
+        <section class="portfolio-section">
+            <h2>Mening Loyihalarim</h2>
+            <div class="portfolio-item">
+                <div class="item">
+                    <h3>the.runstax.uz Sayti</h3>
+                    <p>bu sayt orqali server sotib olishadi va bu sayt yaxshi</p>
+                </div>
+                <div class="item">
+                    <h3>nurlicraft.netlify.app</h3>
+                    <p>men sotgan saytlardan biri boladi</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="portfolio-section">
+            <h2>Bilimdarim</h2>
+            <div class="portfolio-item">
+                <div class="item">
+                    <h3>Frontend</h3>
+                    <p>HTML, CSS, JavaScript</p>
+                </div>
+                <div class="item">
+                    <h3>Backend</h3>
+                    <p>hozircha kam bilaman</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>© 2025 Mening Portfolio Saytim. Barcha huquqlar himoyalangan.</p>
+    </footer>
+    
+    <script>
+        document.addEventListener('click', function(e) {
+            // JS yoki CSS stikerini tasodifiy tanlash
+            const isJs = Math.random() > 0.5;
+            const sticker = document.createElement('div');
+            
+            // Stiker klassi va matnini belgilash
+            sticker.className = `sticker ${isJs ? 'js-sticker' : 'css-sticker'}`;
+            sticker.textContent = isJs ? 'JS' : 'CSS';
+            
+            // Stikerni ekranda bosilgan joyga joylashtirish
+            sticker.style.left = `${e.clientX - 25}px`;
+            sticker.style.top = `${e.clientY - 25}px`;
+            
+            // Stikerni body ga qo'shish
+            document.body.appendChild(sticker);
+            
+            // 3 soniyadan keyin stikerni o'chirish
+            setTimeout(() => {
+                sticker.remove();
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
