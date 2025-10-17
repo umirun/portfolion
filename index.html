@@ -3,59 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Umrbek portfolio</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="fill:black;"><circle cx="8" cy="8" r="6"/></svg>') 8 8, auto;
         }
         
         body {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            color: #fff;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #16213e);
+            color: #e0e0e0;
             min-height: 100vh;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         header {
             text-align: center;
-            padding: 2rem 0;
+            padding: 3rem 1rem;
             position: relative;
             z-index: 10;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
         }
         
         h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            animation: glow 2s infinite alternate;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: pulse 3s infinite alternate;
         }
         
-        @keyframes glow {
-            from { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #e60073; }
-            to { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073; }
+        @keyframes pulse {
+            from { opacity: 0.8; }
+            to { opacity: 1; }
+        }
+        
+        .projects {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .project-link {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .project-link:hover {
+            background: rgba(79, 172, 254, 0.2);
+            border-color: #4facfe;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(79, 172, 254, 0.2);
         }
         
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 1000px;
+            width: 100%;
             padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
         
         .portfolio-section {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
         
         .portfolio-section:hover {
-            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #4facfe;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            border-radius: 3px;
         }
         
         .portfolio-item {
@@ -67,48 +128,51 @@
         
         .item {
             flex: 1;
-            min-width: 300px;
-            background: rgba(255, 255, 255, 0.15);
+            min-width: 280px;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             padding: 1.5rem;
             transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .item:hover {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.1);
             transform: scale(1.03);
+            border-color: rgba(79, 172, 254, 0.3);
         }
         
         .item h3 {
             margin-bottom: 1rem;
-            color: #fdbb2d;
+            color: #00f2fe;
         }
         
         .sticker {
             position: fixed;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            padding: 0.5rem 1rem;
+            padding: 0.8rem 1.2rem;
             border-radius: 50%;
             z-index: 100;
             pointer-events: none;
-            animation: fall 3s linear forwards;
+            animation: fall 4s linear forwards;
+            top: -100px;
         }
         
         @keyframes fall {
             0% {
-                transform: translateY(-100px) rotate(0deg);
+                transform: translateY(0) rotate(0deg);
                 opacity: 1;
             }
             100% {
-                transform: translateY(100vh) rotate(360deg);
+                transform: translateY(calc(100vh + 100px)) rotate(360deg);
                 opacity: 0;
             }
         }
         
-        .js-sticker {
-            background: #f7df1e;
-            color: #323330;
+        .html-sticker {
+            background: #e34c26;
+            color: white;
         }
         
         .css-sticker {
@@ -116,36 +180,71 @@
             color: white;
         }
         
+        .js-sticker {
+            background: #f7df1e;
+            color: #323330;
+        }
+        
         footer {
             text-align: center;
             padding: 2rem;
-            margin-top: 2rem;
+            margin-top: auto;
             font-size: 0.9rem;
-            opacity: 0.8;
+            opacity: 0.6;
+            width: 100%;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .tech-tag {
+            background: rgba(79, 172, 254, 0.1);
+            color: #4facfe;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1> Umrbek Portfolio</h1>
+        <h1>Yasagan saytlarim</h1>
+        <div class="projects">
+            <a href="https://the.runstax.uz" target="_blank" class="project-link">the.runstax.uz</a>
+            <a href="https://nurlicraft.netlify.app" target="_blank" class="project-link">nurlicraft.netlify.app</a>
+        </div>
     </header>
     
     <div class="container">
         <section class="portfolio-section">
             <h2>Men haqimda</h2>
-            <p>Men web dasturchiman. Zamonaviy va foydalanuvchilarga qulay saytlar yaratish bilan shug'ullanaman.</p>
+            <p>Men web dasturchiman. Zamonaviy, foydalanuvchilarga qulay va vizual jihatdan jozibali saytlar yaratish bilan shug'ullanaman. Frontend va backend texnologiyalarda chuqur bilimga egaman.</p>
         </section>
         
         <section class="portfolio-section">
-            <h2>Mening Loyihalarim</h2>
+            <h2>Loyihalarim</h2>
             <div class="portfolio-item">
                 <div class="item">
-                    <h3>the.runstax.uz Sayti</h3>
-                    <p>bu sayt orqali server sotib olishadi va bu sayt yaxshi</p>
+                    <h3>E-commerce platform</h3>
+                    <p>To'liq funksional onlayn do'kon. To'lov tizimlari, mahsulot katalogi va shaxsiy kabinet bilan.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
                 </div>
                 <div class="item">
-                    <h3>nurlicraft.netlify.app</h3>
-                    <p>men sotgan saytlardan biri boladi</p>
+                    <h3>Blog platformasi</h3>
+                    <p>Foydalanuvchilar o'z maqolalarini e'lon qilishi mumkin bo'lgan zamonaviy blog platformasi.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -155,41 +254,41 @@
             <div class="portfolio-item">
                 <div class="item">
                     <h3>Frontend</h3>
-                    <p>HTML, CSS, JavaScript</p>
+                    <p>HTML5, CSS3, JavaScript, React, Vue.js, SASS, Tailwind CSS, Responsive Design</p>
                 </div>
                 <div class="item">
                     <h3>Backend</h3>
-                    <p>hozircha kam bilaman</p>
+                    <p>Node.js, Express, PHP, Laravel, MongoDB, MySQL, REST API</p>
                 </div>
             </div>
         </section>
     </div>
     
     <footer>
-        <p>© 2025 Mening Portfolio Saytim. Barcha huquqlar himoyalangan.</p>
+        <p>© 2023 Umrbek portfolio. Barcha huquqlar himoyalangan.</p>
     </footer>
     
     <script>
         document.addEventListener('click', function(e) {
-            // JS yoki CSS stikerini tasodifiy tanlash
-            const isJs = Math.random() > 0.5;
+            // Stikerlarni tasodifiy tanlash (HTML, CSS yoki JS)
+            const stickerTypes = ['html', 'css', 'js'];
+            const randomType = stickerTypes[Math.floor(Math.random() * stickerTypes.length)];
+            
             const sticker = document.createElement('div');
+            sticker.className = `sticker ${randomType}-sticker`;
+            sticker.textContent = randomType.toUpperCase();
             
-            // Stiker klassi va matnini belgilash
-            sticker.className = `sticker ${isJs ? 'js-sticker' : 'css-sticker'}`;
-            sticker.textContent = isJs ? 'JS' : 'CSS';
-            
-            // Stikerni ekranda bosilgan joyga joylashtirish
-            sticker.style.left = `${e.clientX - 25}px`;
-            sticker.style.top = `${e.clientY - 25}px`;
+            // Stikerni ekranning tasodifiy joyiga joylashtirish (tepada)
+            const randomX = Math.random() * window.innerWidth;
+            sticker.style.left = `${randomX}px`;
             
             // Stikerni body ga qo'shish
             document.body.appendChild(sticker);
             
-            // 3 soniyadan keyin stikerni o'chirish
+            // 4 soniyadan keyin stikerni o'chirish
             setTimeout(() => {
                 sticker.remove();
-            }, 3000);
+            }, 4000);
         });
     </script>
 </body>
